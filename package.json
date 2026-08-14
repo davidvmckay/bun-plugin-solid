@@ -1,35 +1,43 @@
 {
   "name": "@dschz/bun-plugin-solid",
-  "description": "A Bun plugin for transforming SolidJS TSX/JSX files at runtime or build time using Babel. Supports SSR and DOM output.",
   "version": "1.0.4",
-  "author": "Daniel Sanchez",
-  "license": "MIT",
-  "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "publishConfig": {
-    "access": "public"
-  },
+  "description": "A Bun plugin for transforming SolidJS TSX/JSX files at runtime or build time using Babel. Supports SSR and DOM output.",
   "keywords": [
+    "babel",
     "bun",
+    "jsx",
     "plugin",
     "solid",
     "solidjs",
-    "jsx",
     "ssr",
-    "babel",
     "tsx"
   ],
+  "license": "MIT",
+  "author": "Daniel Sanchez",
   "files": [
     "dist"
   ],
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "browser": {},
+  "types": "./dist/index.d.ts",
+  "typesVersions": {},
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build:pkg": "bun build src/index.ts --outdir dist --target bun --external @babel/core --external @babel/preset-typescript --external babel-preset-solid",
     "build:types": "tsc --emitDeclarationOnly --declaration --outDir dist",
     "build": "bun run build:pkg && bun run build:types",
-    "format": "prettier --check .",
-    "format:fix": "prettier --write .",
+    "format": "oxfmt --check",
+    "format:fix": "oxfmt",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "pkg:changeset": "changeset",
@@ -38,11 +46,6 @@
     "test": "vitest run",
     "test:cov": "vitest run --coverage",
     "typecheck": "tsc --noEmit"
-  },
-  "peerDependencies": {
-    "@babel/core": ">=7.24.0",
-    "@babel/preset-typescript": ">=7.24.0",
-    "babel-preset-solid": ">=1.8.9"
   },
   "devDependencies": {
     "@babel/core": "^7.27.1",
@@ -56,20 +59,17 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "globals": "^16.1.0",
     "jiti": "^2.4.2",
-    "prettier": "^3.5.3",
+    "oxfmt": "^0.60.0",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.32.0",
     "vitest": "^3.1.3"
   },
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
+  "peerDependencies": {
+    "@babel/core": ">=7.24.0",
+    "@babel/preset-typescript": ">=7.24.0",
+    "babel-preset-solid": ">=1.8.9"
   },
   "engines": {
     "bun": ">=1.2.0"
-  },
-  "browser": {},
-  "typesVersions": {}
+  }
 }
